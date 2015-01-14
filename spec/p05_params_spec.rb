@@ -30,6 +30,7 @@ describe Phase5::Params do
     it "handles multiple keys and values" do
       req.query_string = "key=val&key2=val2"
       params = Phase5::Params.new(req)
+
       params["key"].should == "val"
       params["key2"].should == "val2"
     end
