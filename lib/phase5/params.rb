@@ -16,6 +16,14 @@ module Phase5
       if req.query_string
         @params.merge!(parse_www_encoded_form(req.query_string))
       end
+
+      if req.body
+        @params.merge!(parse_www_encoded_form(req.body))
+      end
+
+      if route_params
+        @params.merge!(route_params)
+      end
     end
 
     def [](key)
@@ -80,7 +88,6 @@ module Phase5
     end
 
     def deep_hash_merge(hash1, hash2)
-
       if ((hash1.keys[0] == hash2.keys[0]) && (hash1.values[0].keys[0] != hash2.values[0].keys[0]))
         return { hash1.keys[0] => join_hashes_with_different_keys(hash1.values[0], hash2.values[0]) }
       end
