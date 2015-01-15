@@ -4,8 +4,9 @@ require_relative '../lib/phase8/controller_base'
 
 class MyController < Phase8::ControllerBase
   def go
-    flash["errors"] = "No errors"
-    flash["notice"] = "You rock!"
+    flash["notice"] = rand(2)
+    flash["test"] = 2 if flash["notice"] == 1
+    flash.now["now"] = 7
     render :show
   end
 end
